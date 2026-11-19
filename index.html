@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Rosie The Glam Factory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@400;500;600&family=Pinyon+Script&display=swap">
+<style>
+/* Layout (from the Lavish salon template): split nav around a centred logo, oval-masked hero with floating ovals,
+   slanted service ribbon, about-collage, ruled services grid + sticky price panel, lookbook tabs, red visit band.
+   Single theme: Rosie's own brand = white, logo grey, butterfly red. */
+:root{
+  --bg:#FFFFFF;
+  --blush:#F8EEEE;      /* from their poster backgrounds */
+  --ink:#2B2427;        /* charcoal text */
+  --grey:#97949E;       /* logo lettering grey */
+  --soft:#6F6870;
+  --red:#B01E32;        /* butterfly red, sampled */
+  --red-deep:#8E1426;
+  --line:#EADDDE;
+  --display:"Bodoni Moda", "Didot", "Times New Roman", serif;
+  --body:"Jost", "Segoe UI", system-ui, sans-serif;
+  --script:"Pinyon Script", "Brush Script MT", cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);margin:0;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.script{font-family:var(--script);color:var(--red);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;font:500 15px var(--body);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);cursor:pointer}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-deep);border-color:var(--red-deep)}
+.btn-line{background:transparent;color:var(--red)}
+.label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:600}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:12px}
+.nav .l,.nav .r{display:flex;gap:28px;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.nav .r{justify-content:flex-end;align-items:center}
+.nav a{text-decoration:none}
+.nav .l a:hover,.nav .r a:not(.btn):hover{color:var(--red)}
+.nav img{height:52px;width:auto;display:block}
+.nav .btn{padding:9px 18px;font-size:13px}
+@media (max-width:820px){.nav{grid-template-columns:auto 1fr}.nav .l,.nav .r a:not(.btn){display:none}.nav img{height:42px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding-block:48px 40px;background:radial-gradient(60% 60% at 50% 40%,var(--blush),transparent 70%)}
+.hero h1{font-size:clamp(40px,6.5vw,82px)}
+.hero h1 .script{display:block;font-size:1.25em;line-height:.9;margin-top:4px}
+.hero .sub{color:var(--soft);font-size:18px;margin-top:14px}
+.stage{position:relative;margin:30px auto 0;width:min(440px,78vw)}
+.oval{border-radius:50%;overflow:hidden}
+.stage .main{aspect-ratio:3/4;max-width:100%;border:6px solid #fff;box-shadow:0 30px 60px -30px rgba(176,30,50,.45)}
+.stage img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block}
+.float{position:absolute;width:42%;aspect-ratio:3/4;border:5px solid #fff;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)}
+.float.a{left:-62%;top:14%}
+.float.b{right:-62%;top:36%}
+.stage .tag{position:absolute;left:50%;bottom:-16px;transform:translateX(-50%);background:#fff;border:1px solid var(--line);padding:7px 14px;font-size:13px;white-space:nowrap;border-radius:999px}
+.stage .tag b{color:var(--red);font-weight:600}
+.hero .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.hero .hours{margin-top:16px;font-size:14px;color:var(--soft);letter-spacing:.04em}
+@media (max-width:820px){.float{width:38%}.float.a{left:-20%;top:auto;bottom:-6%}.float.b{right:-20%;top:-4%}.stage{width:min(330px,70vw)}}
+
+/* ribbon */
+.ribbon{margin-block:56px 30px;transform:rotate(-3deg);background:#fff;border-block:1.5px solid var(--red);overflow:hidden;width:110%;margin-left:-5%}
+.ribbon .track{display:flex;gap:44px;padding-block:14px;width:max-content;font-family:var(--display);font-size:clamp(22px,3vw,34px);color:var(--red);white-space:nowrap}
+.ribbon .track span::after{content:"✦";margin-left:44px;font-size:.6em;vertical-align:middle;color:var(--grey)}
+@media (prefers-reduced-motion:no-preference){.ribbon .track{animation:slide 38s linear infinite}@keyframes slide{to{transform:translateX(-50%)}}}
+
+/* about collage */
+section{padding-block:80px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about h2{font-size:clamp(34px,4.8vw,58px)}
+.about p{color:var(--soft);margin-top:18px;max-width:46ch}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;margin-top:30px;max-width:420px}
+.facts b{display:block;font-family:var(--display);font-size:34px;font-weight:500;color:var(--red);line-height:1;font-variant-numeric:lining-nums}
+.facts span{font-size:14px;color:var(--soft)}
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.collage img{width:100%;object-fit:cover;display:block}
+.collage .c1{aspect-ratio:3/4;border-radius:999px}
+.collage .c2{aspect-ratio:4/5;margin-top:60px}
+.collage .c3{aspect-ratio:4/5;margin-top:-40px}
+.collage .c4{aspect-ratio:3/4;border-radius:999px;margin-top:20px}
+.collage figure{margin:0;position:relative}
+.collage figcaption{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-top:8px}
+
+/* services */
+.svc-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.svc-head h2{font-size:clamp(34px,4.8vw,58px)}
+.svc-head .note{color:var(--soft);max-width:40ch}
+.svc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;margin-top:40px;align-items:start}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 18px;background:#fff;text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:4px;min-height:132px}
+.cell .ic{font-family:var(--display);font-style:italic;color:var(--grey);font-size:15px}
+.cell h3{font-size:21px;line-height:1.15}
+.cell small{color:var(--soft);font-size:13px;margin-top:auto}
+.cell:hover{background:var(--blush)}
+.cell[aria-pressed="true"]{background:var(--red);color:#fff}
+.cell[aria-pressed="true"] .ic,.cell[aria-pressed="true"] small{color:#ffd9dd}
+.panel{position:sticky;top:96px;background:var(--blush);padding:28px;min-width:0}
+.panel h3{font-size:32px}
+.panel .meta{font-size:14px;color:var(--soft);margin-top:4px}
+.search{margin-top:16px;width:100%;font:16px var(--body);border:1px solid var(--line);background:#fff;padding:12px 14px;color:var(--ink)}
+.items{list-style:none;margin:16px 0 0;padding:0;max-height:440px;overflow:auto}
+.items li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding-block:12px;border-bottom:1px dashed #dcc9cb}
+.items .n{font-weight:500}
+.items .d{font-size:13px;color:var(--soft)}
+.items .p{grid-row:1/3;grid-column:2;align-self:center;font-variant-numeric:tabular-nums;font-weight:600;color:var(--red-deep);white-space:nowrap}
+.items .cat{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.panel .btn{width:100%;margin-top:20px}
+.panel .fine{font-size:12px;color:var(--soft);margin-top:10px;text-align:center}
+@media (max-width:900px){.svc,.about{grid-template-columns:1fr}.panel{position:static}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cell{min-height:110px;padding:16px 14px}.cell h3{font-size:18px}}
+
+/* lookbook */
+.look{background:var(--blush)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.tabs button{font:500 14px var(--body);letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1.5px solid var(--ink);color:var(--ink);padding:9px 18px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.masonry{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:30px}
+.masonry img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;display:block}
+.masonry img:nth-child(6n+1){grid-row:span 2;aspect-ratio:auto;height:100%}
+@media (max-width:820px){.masonry{grid-template-columns:repeat(2,minmax(0,1fr))}.masonry img:nth-child(6n+1){grid-row:auto;aspect-ratio:4/5;height:auto}}
+
+/* visit */
+.visit{background:var(--red);color:#fff}
+.visit .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.visit h2{font-size:clamp(34px,4.8vw,58px)}
+.visit dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin:26px 0 0}
+.visit dt{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#ffd0d6;padding-top:3px}
+.visit dd{margin:0;font-size:17px}
+.visit .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.visit .btn{border-color:#fff}
+.visit .btn-red{background:#fff;color:var(--red)}
+.visit .btn-line{color:#fff}
+.visit img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 72%;border-radius:999px 999px 0 0;display:block}
+@media (max-width:900px){.visit .wrap{grid-template-columns:1fr}.visit img{max-height:520px}}
+footer{background:var(--red-deep);color:#ffdfe3;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 30px;justify-content:space-between;align-items:center;padding-block:26px calc(26px + env(safe-area-inset-bottom,0px))}
+footer img{height:40px;width:auto}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <nav class="l" aria-label="Sections"><a href="#services">Services</a><a href="#services">Prices</a></nav>
+    <a href="#top" aria-label="Rosie The Glam Factory, home"><img src="img/logo.png" alt="Rosie The Glam Factory"></a>
+    <div class="r"><a href="#looks">Gallery</a><a href="#visit">Visit</a><a class="btn btn-red" href="https://www.welns.io/product/booking/WFRCHN000021598/ROSIETHEGLAMFACTORY22100/" target="_blank" rel="noopener">Book</a></div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="label">Salon &amp; Spa · East Legon</div>
+      <h1 style="margin-top:14px">Your full beauty experience <span class="script">awaits</span></h1>
+      <p class="sub">Hair · Spa · Nails · Brows · Lashes · Makeup</p>
+      <div class="stage">
+        <div class="oval main"><img src="img/hero.webp" alt="Actress Jackie Appiah wearing Rosie's Akua wig unit"></div>
+        <div class="oval float a"><img src="img/nails1.webp" alt="Red stiletto nails done at Rosie"></div>
+        <div class="oval float b"><img src="img/interior.webp" alt="Inside the salon on Nikoi Street"></div>
+        <span class="tag"><b>@jackieappiah</b> in our Akua unit</span>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-red" href="https://www.welns.io/product/booking/WFRCHN000021598/ROSIETHEGLAMFACTORY22100/" target="_blank" rel="noopener">Book online</a>
+        <a class="btn btn-line" href="https://wa.me/message/ED3SH2MNRH6YD1" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+      <p class="hours">Mon–Sat 9am–8pm · Sun 2pm–8pm · 11 Nikoi Street</p>
+    </div>
+  </div>
+
+  <div style="overflow:hidden;padding-block:10px"><div class="ribbon" aria-hidden="true"><div class="track" id="track"></div></div></div>
+
+  <section>
+    <div class="wrap about">
+      <div>
+        <div class="label">About Rosie</div>
+        <h2 style="margin-top:14px">Accra's modern <span class="script" style="font-size:1.15em">one-stop</span> salon &amp; spa.</h2>
+        <p>Braids and locs, wig installs, acrylic sets, lash extensions, facials and full glam, all under one roof on Nikoi Street. Sit back in the pedicure lounge, or book a bridal makeup session for the big day.</p>
+        <div class="facts">
+          <div><b>170+</b><span>services on our menu</span></div>
+          <div><b>4.9★</b><span>on Google reviews</span></div>
+          <div><b>17.4K</b><span>follow us on Instagram</span></div>
+          <div><b>7 days</b><span>open every week</span></div>
+        </div>
+      </div>
+      <div class="collage">
+        <figure><img class="c1" src="img/interior.webp" alt="Salon floor with styling chairs"><figcaption>The salon floor</figcaption></figure>
+        <figure><img class="c2" src="img/pedi.webp" alt="Clients relaxing in the pedicure lounge"><figcaption>Pedicure lounge</figcaption></figure>
+        <figure><img class="c3" src="img/lashroom.webp" alt="The makeup and eyelash extension room"><figcaption>Makeup &amp; lash room</figcaption></figure>
+        <figure><img class="c4" src="img/sign.webp" alt="Rosie The Glam Factory sign outside the building"><figcaption>Find the sign on Nikoi St</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-top:20px">
+    <div class="wrap">
+      <div class="svc-head">
+        <div><div class="label">Services &amp; prices</div><h2 style="margin-top:14px">The full menu.</h2></div>
+        <p class="note">Pick a category, or search every service. Prices in Ghana cedis; book online or on WhatsApp.</p>
+      </div>
+      <div class="svc">
+        <div class="grid" id="grid" role="group" aria-label="Service categories"></div>
+        <aside class="panel" aria-live="polite">
+          <h3 id="p-title">Nails</h3>
+          <p class="meta" id="p-meta"></p>
+          <label for="q" class="label" style="display:block;margin-top:16px;color:var(--soft)">Search all services</label>
+          <input id="q" class="search" type="search" placeholder="e.g. knotless, facial, gel">
+          <ul class="items" id="items"></ul>
+          <a class="btn btn-red" href="https://www.welns.io/product/booking/WFRCHN000021598/ROSIETHEGLAMFACTORY22100/" target="_blank" rel="noopener">Book this online</a>
+          <p class="fine">Prices from Rosie's booking page, Nov 2026.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="look" id="looks">
+    <div class="wrap">
+      <div class="label">Recent looks</div>
+      <h2 style="margin-top:14px;font-size:clamp(34px,4.8vw,58px)">Straight from our chairs.</h2>
+      <div class="tabs" role="group" aria-label="Filter looks">
+        <button type="button" aria-pressed="true" data-t="all">All</button>
+        <button type="button" aria-pressed="false" data-t="hair">Hair</button>
+        <button type="button" aria-pressed="false" data-t="nails">Nails</button>
+        <button type="button" aria-pressed="false" data-t="glam">Glam</button>
+      </div>
+      <div class="masonry" id="masonry">
+        <img data-t="hair" src="img/hair1.webp" alt="Long straight wig install">
+        <img data-t="nails" src="img/nails2.webp" alt="Black French tip acrylics">
+        <img data-t="glam" src="img/glam1.webp" alt="Soft glam makeup">
+        <img data-t="hair" src="img/hair2.webp" alt="Long passion twists">
+        <img data-t="nails" src="img/nails4.webp" alt="Nude acrylics with crystal art">
+        <img data-t="hair" src="img/hair3.webp" alt="Neat knotless braids">
+        <img data-t="glam" src="img/glam2.webp" alt="Full glam with styled curls">
+        <img data-t="nails" src="img/nails3.webp" alt="Pink almond nails with flower art">
+        <img data-t="hair" src="img/hair4.webp" alt="Boho braids">
+        <img data-t="hair" src="img/locs.webp" alt="Butterfly locs">
+        <img data-t="nails" src="img/nails5.webp" alt="Dark red and gold nail set">
+        <img data-t="hair" src="img/kids.webp" alt="Cornrows for a young client">      </div>
+      <p style="margin-top:20px"><a class="btn btn-line" href="https://www.instagram.com/rosietheglamfactory/" target="_blank" rel="noopener">More on Instagram · 2,100+ posts</a></p>
+    </div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div>
+        <div class="label" style="color:#ffd0d6">Visit us</div>
+        <h2 style="margin-top:14px">Come in, sit back, <span class="script" style="color:#fff;font-size:1.15em">glow up.</span></h2>
+        <dl>
+          <dt>Address</dt><dd>11 Nikoi Street, East Legon, Accra</dd>
+          <dt>Hours</dt><dd>Mon–Sat 9am–8pm<br>Sunday 2pm–8pm</dd>
+          <dt>Phone</dt><dd>+233 57 465 2560 · 059 896 3707</dd>
+        </dl>
+        <div class="ctas">
+          <a class="btn btn-red" href="https://www.welns.io/product/booking/WFRCHN000021598/ROSIETHEGLAMFACTORY22100/" target="_blank" rel="noopener">Book online</a>
+          <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Rosie+The+Glam+Factory+11+Nikoi+St+Accra" target="_blank" rel="noopener">Directions</a>
+          <a class="btn btn-line" href="https://wa.me/message/ED3SH2MNRH6YD1" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <img src="img/pedi.webp" alt="The pedicure lounge at Rosie">
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><img src="img/logo_white.png" alt="Rosie The Glam Factory"><span>© 2026 Rosie The Glam Factory · @rosietheglamfactory · TikTok @rosietheglamfactory</span></div></footer>
+
+<script>
+(function(){
+const M={
+"Nails":[["Acrylic Full Set – Short",50,220],["Acrylic Full Set – Medium",60,300],["Acrylic Full Set – Long",70,400],["Acrylic Full Set – Extra Long/Sculpted",80,150],["Builder Gel – Short",45,200],["Builder Gel – Medium",50,250],["Builder Gel – Long",50,300],["Nail Sculpting",60,380],["Refill (Acrylic or Builder Gel)",50,120],["Soak Off / Removal",30,80],["Basic Manicure (Normal Polish)",50,120],["Gel Polish Manicure",60,180],["Luxury Manicure (Scrub & Massage)",60,220],["Nail Trimming Only",30,50],["Stick-On Nails",40,120],["Extra Nail Tip (per nail)",30,20],["French Tips",40,80],["Nail Art (Simple)",40,80],["Nail Art (Advanced / 3D)",50,150],["Gel Polish on the Hand",60,100],["Acrylic/Builder Gel Dissolving – Short",30,100],["Acrylic/Builder Gel Dissolving – Long",30,150]],
+"Pedicure":[["Classic Pedicure",60,180],["Jelly Pedicure",40,220],["Jelly Pedicure with Gel Polish",60,280],["Pedicure with Normal Polish",60,220],["Pedicure with Gel Polish",50,250],["Luxury Pedicure (Scrub, Mask & Massage)",60,320],["Classic Men's Pedicure",50,200],["Deluxe Men's Pedicure",60,280],["Acrylic on Toes",60,150],["Acrylic Toe Extensions",50,220],["Big Toe Extension with Gel (per toe)",50,60],["Gel Polish on Toes",40,100],["Gel Polish Removal (Toes)",50,80],["Normal Polish on Toes",40,80]],
+"Brows & Lashes":[["Strip Lashes",10,80],["Individual Lashes",60,200],["Classic Lash Extensions",60,300],["Hybrid Lash Extensions",60,400],["Volume Lash Extensions",70,500],["Extra-Long Volume Lash Extensions",70,550],["Classic Refill",50,180],["Hybrid Refill",60,200],["Volume Refill",70,250],["Lash Removal",30,150],["Brow Lamination",40,200],["Brow Shaping / Wax",30,100],["Brow Tint",40,120]],
+"Braids & Hair":[["Knotless Braids",70,500],["Box Braids",60,300],["Boho Braids",60,450],["Ghana Weaving",60,300],["Braids – Neck Length",60,300],["Braids – Bra Length",60,400],["Braids – Waist Length",70,500],["Braids – Butt Length",60,650],["Cornrows (Simple)",40,150],["Cornrows (Stitch / Detailed)",60,250],["Cornrow Rasta",70,250],["Cornrow Rasta Long",60,300],["Braiding on Natural Hair",40,120],["Natural Twist",50,150],["Blow Dry (Natural Hair)",40,100],["Unbraiding – Short Hair",60,100],["Unbraiding – Long Hair",60,150]],
+"Kids":[["Kids Cornrows (Simple)",40,120],["Kids Cornrows (Detailed)",40,180],["Kids Braids – Neck Length (under 12)",50,150],["Kids Braids – Bra Length (under 12)",60,200],["Kids Braids – Waist Length (under 12)",50,250],["Kid's Hair Wash & Blow-Dry",60,100]],
+"Locs":[["Comb Coils",60,300],["Instant Locs",80,2500],["Micro Locs Installation",80,2500],["Two-Strand Twist Starter Locs",80,2000],["Interlocking",60,250],["Loc Detox",60,220],["Loc Retouch",50,200],["Loc Wash & Style",60,150],["Micro Locs Retightening",60,450],["Simple Locs Styling",30,150],["Advanced / Updo Loc Styling",60,250],["Butterfly Locs",70,500],["Faux Locs",60,450],["Soft Locs",60,500],["Sister Locs Consultation",40,150],["Sister Locs Wash & Style",60,250]],
+"Ponytails":[["Natural Hair Ponytail",60,180],["Sleek Ponytail",60,250],["Braided Ponytail",50,300],["Frontal Ponytail",60,300],["Front Cut Ponytail",60,320],["Half Up, Half Down",60,320],["Curly Ponytail",60,350]],
+"Wash, Relaxers & Treatments":[["Straightening Only",40,120],["Wash & Blow Dry",40,150],["Wash & Straighten",50,220],["Wash, Treat & Blow Dry",60,220],["Relaxer with Client's Product",40,150],["Dark & Lovely Relaxer",60,200],["Keracare Relaxer",60,200],["Relaxer (Standard)",50,250],["Nairobi Relaxer",60,320],["Affirm Relaxer",60,350],["Mizani Relaxer",60,350],["Scalp Treatment",40,120],["Deep Conditioning Treatment",40,180],["Anti-Dandruff Treatment",50,200],["Protein Treatment",50,200],["Steam Treatment",60,220],["Growth Stimulation Treatment",60,250]],
+"Weaves & Wigs":[["Weave Installation",60,280],["Closure Installation",60,250],["Frontal Installation",60,350],["360 Frontal Installation",60,400],["Sew-In with Leave Out",60,300],["Styling of Closure",30,150],["Styling of Frontal",60,250],["Revamp of Frontal",60,400],["Wig Installation",50,280],["Closure Wig",60,250],["Frontal Wig",60,350],["360 Frontal Wig",60,450],["Wig Customization",50,220],["Wig Washing & Styling",60,200],["Wig Revamp",50,250],["Knot Bleaching",40,100],["Highlights",50,250],["Ends Colouring",60,250],["Full Wig Colouring",50,350]],
+"Makeup":[["Natural / Soft Glam",120,300],["Soft Glam",60,350],["Full Glam",120,400],["Make Up Full Glam",60,450],["Photoshoot Makeup",40,500],["Bridal Makeup",180,1500]],
+"Spa & Facials":[["Vee Facial",60,350],["Anti-Aging Facial",60,350],["Anti-Inflammatory Facial",60,400],["Detox & Hydro Facial",60,450],["20K Facial",60,600],["Swedish Massage",60,350],["Hot Stone Massage",60,400],["Deep Tissue Massage",60,450],["Back & Shoulder Massage",120,220],["Relaxation Massage",120,350],["Relaxation Massage (2 hours)",120,650],["Sugar Scrub",60,450],["Seshin Body Scrub",120,650]],
+"Waxing & Piercing":[["Brow Wax",30,100],["Armpit Wax",30,100],["Facial Wax",30,120],["Beard Waxing",60,150],["Half Leg Wax",30,180],["Full Leg Wax",60,280],["Bikini Wax",100,300],["Brazilian Wax",60,400],["Full Body Wax",150,750],["Ear Piercing",30,100],["Nose Piercing",40,150],["Eyebrow Piercing",40,150],["Lip Piercing",40,150],["Navel Piercing",40,200],["Tongue Piercing",50,250]]
+};
+const cats=Object.keys(M);
+const fmt=n=>'GH₵ '+n.toLocaleString('en-GH');
+const dur=m=>m>=60?(Math.floor(m/60)+' hr'+(m%60?' '+m%60+' min':'')):m+' min';
+const grid=document.getElementById('grid'), items=document.getElementById('items'), q=document.getElementById('q');
+let current=cats[0];
+cats.forEach((c,i)=>{
+  const b=document.createElement('button'); b.type='button'; b.className='cell'; b.setAttribute('aria-pressed',i===0);
+  const min=Math.min(...M[c].map(x=>x[2]));
+  b.innerHTML=`<span class="ic">${String(i+1).padStart(2,'0')}</span><h3>${c}</h3><small>${M[c].length} services · from ${fmt(min)}</small>`;
+  b.addEventListener('click',()=>{current=c;q.value='';[...grid.children].forEach(x=>x.setAttribute('aria-pressed',x===b));render();
+    if(matchMedia('(max-width:900px)').matches) document.querySelector('.panel').scrollIntoView({behavior:'smooth',block:'start'});});
+  grid.appendChild(b);
+});
+function li(x,cat){return `<li>${cat?`<span class="cat">${cat}</span>`:''}<span class="n">${x[0]}</span><span class="d">${dur(x[1])}</span><span class="p">${fmt(x[2])}</span></li>`;}
+function render(){
+  const s=q.value.trim().toLowerCase();
+  if(s){
+    const hits=[];cats.forEach(c=>M[c].forEach(x=>{if((x[0]+' '+c).toLowerCase().includes(s))hits.push([x,c]);}));
+    document.getElementById('p-title').textContent='Search';
+    document.getElementById('p-meta').textContent=hits.length+' result'+(hits.length===1?'':'s')+' for “'+q.value.trim()+'”';
+    items.innerHTML=hits.length?hits.map(h=>li(h[0],h[1])).join(''):'<li><span class="n">No match. Try “braids”, “gel” or “facial”.</span></li>';
+  } else {
+    document.getElementById('p-title').textContent=current;
+    const ps=M[current].map(x=>x[2]);
+    document.getElementById('p-meta').textContent=M[current].length+' services · '+fmt(Math.min(...ps))+' – '+fmt(Math.max(...ps));
+    items.innerHTML=M[current].map(x=>li(x)).join('');
+  }
+}
+q.addEventListener('input',render); render();
+// ribbon
+const words=['Knotless Braids','Lash Extensions','Acrylic Sets','Frontal Installs','Facials','Bridal Glam','Butterfly Locs','Pedicures','Massage','Brow Lamination'];
+document.getElementById('track').innerHTML=[...words,...words].map(w=>`<span>${w}</span>`).join('');
+// lookbook filter
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.querySelectorAll('#masonry img').forEach(i=>i.hidden=!(b.dataset.t==='all'||i.dataset.t===b.dataset.t));
+}));
+})();
+</script>
+
+</body>
+</html>
